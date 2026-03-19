@@ -19,7 +19,7 @@ export const translations = {
       s1v: '200+', s1l: 'Khách Hàng & Đối Tác',
       s2v: '20+', s2l: 'Năm Kinh Nghiệm',
       s3v: '300+', s3l: 'Dòng Sản Phẩm',
-      s4l: 'Mạng Lưới Toàn Quốc & Quốc Tế',
+      s4v: 'Mạng Lưới', s4l: 'Toàn Quốc & Quốc Tế',
     },
     about: {
       tag: 'Giới Thiệu',
