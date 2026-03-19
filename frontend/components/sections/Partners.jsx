@@ -1,44 +1,46 @@
 'use client';
-import Image from 'next/image';
 import { useLanguage } from '../../context/LanguageContext';
 
-// Dùng Clearbit Logo API để lấy logo thật của từng công ty
 const partners = [
-  { name: 'SMS Group',       domain: 'sms-group.com',       country: 'Đức' },
-  { name: 'Danieli',         domain: 'danieli.com',          country: 'Ý' },
-  { name: 'Primetals',       domain: 'primetals.com',        country: 'Áo' },
-  { name: 'SKF',             domain: 'skf.com',              country: 'Thụy Điển' },
-  { name: 'Schaeffler / FAG',domain: 'schaeffler.com',       country: 'Đức' },
-  { name: 'NSK',             domain: 'nsk.com',              country: 'Nhật Bản' },
-  { name: 'Siemens',         domain: 'siemens.com',          country: 'Đức' },
-  { name: 'ABB',             domain: 'abb.com',              country: 'Thụy Sĩ' },
-  { name: 'Rexnord',         domain: 'rexnord.com',          country: 'Mỹ' },
-  { name: 'Vesuvius',        domain: 'vesuvius.com',         country: 'Anh' },
-  { name: 'RHI Magnesita',   domain: 'rhimagnesita.com',     country: 'Áo' },
-  { name: 'Magneco Metrel',  domain: 'magnecometrel.com',    country: 'Mỹ' },
+  { name: 'SMS Group',        domain: 'sms-group.com' },
+  { name: 'Danieli',          domain: 'danieli.com' },
+  { name: 'Primetals',        domain: 'primetals.com' },
+  { name: 'SKF',              domain: 'skf.com' },
+  { name: 'Schaeffler',       domain: 'schaeffler.com' },
+  { name: 'NSK',              domain: 'nsk.com' },
+  { name: 'Siemens',          domain: 'siemens.com' },
+  { name: 'ABB',              domain: 'abb.com' },
+  { name: 'Rexnord',          domain: 'rexnord.com' },
+  { name: 'Vesuvius',         domain: 'vesuvius.com' },
+  { name: 'RHI Magnesita',    domain: 'rhimagnesita.com' },
+  { name: 'Magneco Metrel',   domain: 'magnecometrel.com' },
 ];
 
-function PartnerLogo({ partner }) {
-  const logoUrl = `https://logo.clearbit.com/${partner.domain}`;
+function PartnerCard({ partner }) {
+  const logoUrl = `https://logo.clearbit.com/${partner.domain}?size=160`;
 
   return (
-    <div className="flex-shrink-0 mx-3 w-44 h-24 bg-white border border-gray-200 hover:border-primary hover:shadow-md transition-all duration-200 flex flex-col items-center justify-center gap-2 px-4 group cursor-default">
-      <div className="relative w-28 h-10">
-        <Image
-          src={logoUrl}
-          alt={partner.name}
-          fill
-          className="object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
-          sizes="112px"
-          onError={(e) => {
-            // Nếu logo không load được, ẩn ảnh và hiển thị tên
-            e.target.style.display = 'none';
-            e.target.nextSibling && (e.target.nextSibling.style.display = 'block');
-          }}
-        />
-        <span className="hidden text-xs font-bold text-gray-600 text-center leading-tight">{partner.name}</span>
-      </div>
-      <span className="text-xs text-gray-400 group-hover:text-primary transition-colors duration-200">{partner.country}</span>
+    <div className="flex-shrink-0 mx-3 w-44 h-24 bg-white border border-gray-200 hover:border-primary hover:shadow-md transition-all duration-200 flex flex-col items-center justify-center gap-1.5 px-4 group">
+      <img
+        src={logoUrl}
+        alt={partner.name}
+        width={120}
+        height={40}
+        className="object-contain grayscale group-hover:grayscale-0 transition-all duration-300 max-h-10 max-w-[120px]"
+        onError={(e) => {
+          e.currentTarget.style.display = 'none';
+          e.currentTarget.nextElementSibling.style.display = 'block';
+        }}
+      />
+      <span
+        className="hidden text-sm font-bold text-gray-600 text-center leading-tight"
+        style={{ display: 'none' }}
+      >
+        {partner.name}
+      </span>
+      <span className="text-xs text-gray-400 group-hover:text-primary transition-colors duration-200">
+        {partner.name}
+      </span>
     </div>
   );
 }
@@ -54,11 +56,10 @@ export default function Partners() {
         <h2 className="text-xl font-bold text-gray-700">{p.title}</h2>
       </div>
 
-      {/* Marquee */}
       <div className="relative flex overflow-x-hidden">
         <div className="flex animate-marquee">
           {[...partners, ...partners].map((partner, i) => (
-            <PartnerLogo key={i} partner={partner} />
+            <PartnerCard key={i} partner={partner} />
           ))}
         </div>
       </div>
