@@ -28,17 +28,17 @@ function StatCard({ value, label, delay, started }) {
 
   return (
     <div
-      className="bg-primary px-8 py-10 text-center hover:bg-primary-dark transition-colors duration-200"
+      className="bg-primary px-4 py-6 text-center hover:bg-primary-dark transition-colors duration-200"
       style={{ animation: started ? `fadeInUp 0.6s ease ${delay}s both` : 'none' }}
     >
-      <div className="text-4xl md:text-5xl font-black text-white mb-3">
+      <div className="text-2xl md:text-3xl font-black text-white mb-1.5">
         {isNetwork ? (
-          <span className="text-2xl md:text-3xl">{value}</span>
+          <span className="text-base md:text-lg">{value}</span>
         ) : (
           <>{num}{suffix}</>
         )}
       </div>
-      <div className="text-red-100 font-semibold uppercase tracking-wide text-sm">{label}</div>
+      <div className="text-red-100 font-medium uppercase tracking-wide text-xs">{label}</div>
     </div>
   );
 }
@@ -66,8 +66,8 @@ export default function Stats() {
   ];
 
   return (
-    <section className="bg-primary py-16" ref={ref}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="bg-primary py-6" ref={ref}>
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-red-800">
           {stats.map((stat, i) => (
             <StatCard key={stat.label + i} value={stat.value} label={stat.label} delay={i * 0.1} started={started} />
