@@ -34,11 +34,11 @@ export default function Industries() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-900/40 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-6">
-                <h3 className="font-bold text-white text-lg mb-2">{item.name}</h3>
+                <h3 className="font-bold text-white text-base mb-2">{item.name}</h3>
+                <div className="w-8 h-0.5 bg-primary mb-2" />
                 <p className="text-gray-300 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300 max-h-0 group-hover:max-h-24 overflow-hidden">
                   {item.desc}
                 </p>
-                <div className="w-8 h-0.5 bg-primary mt-2" />
               </div>
             </div>
           ))}

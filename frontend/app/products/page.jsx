@@ -28,7 +28,7 @@ export default function ProductsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-20">
             {p.cats.map((cat, idx) => (
-              <div key={cat.name} className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center`}>
+              <div key={cat.name} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div className={`relative h-80 lg:h-96 ${idx % 2 !== 0 ? 'lg:order-2' : ''}`}>
                   <Image src={images[idx]} alt={cat.name} fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
                 </div>
@@ -37,14 +37,14 @@ export default function ProductsPage() {
                   <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">{cat.name}</h2>
                   <p className="text-gray-600 leading-relaxed mb-6">{cat.desc}</p>
                   <ul className="space-y-2 mb-8">
-                    {cat.products.map((prod) => (
+                    {(cat.products || []).map((prod) => (
                       <li key={prod} className="flex items-center gap-3 text-gray-700">
                         <div className="w-1.5 h-1.5 bg-primary flex-shrink-0" />
                         {prod}
                       </li>
                     ))}
                   </ul>
-                  <Link href="/contact" className="btn-primary inline-block">{p.inquireBtn}</Link>
+                  <Link href={`/products/${cat.slug}`} className="btn-primary inline-block">{p.viewDetail}</Link>
                 </div>
               </div>
             ))}

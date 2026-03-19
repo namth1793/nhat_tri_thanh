@@ -25,7 +25,7 @@ export default function ProductCategories() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {p.cats.map((cat, i) => (
-            <div key={cat.name} className="bg-white group overflow-hidden">
+            <div key={cat.name} className="bg-white group overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
               <div className="relative h-52 overflow-hidden">
                 <Image
                   src={images[i]}
@@ -37,9 +37,12 @@ export default function ProductCategories() {
                 <div className="absolute inset-0 bg-gray-900/30 group-hover:bg-gray-900/10 transition-colors duration-300" />
               </div>
               <div className="p-6">
-                <h3 className="font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors duration-200">{cat.name}</h3>
+                <h3 className="font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors duration-200 leading-tight">{cat.name}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed mb-5">{cat.desc}</p>
-                <Link href="/products" className="inline-flex items-center gap-2 text-primary text-sm font-semibold uppercase tracking-wide hover:gap-3 transition-all duration-200">
+                <Link
+                  href={`/products/${cat.slug}`}
+                  className="inline-flex items-center gap-2 text-primary text-sm font-semibold uppercase tracking-wide hover:gap-3 transition-all duration-200"
+                >
                   {p.btn}
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

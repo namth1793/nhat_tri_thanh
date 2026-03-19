@@ -9,8 +9,8 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   const pathname = usePathname();
-  const { lang, t, toggle } = useLanguage();
-  const cats = categoryLinks[lang];
+  const { lang, t, setLanguage } = useLanguage();
+  const cats = categoryLinks[lang] || categoryLinks['en'];
 
   const navLinks = [
     { label: t.nav.home, href: '/' },
@@ -20,6 +20,8 @@ export default function Header() {
   ];
 
   const isProductsActive = pathname === '/products' || pathname.startsWith('/products/');
+  const languages = ['VI', 'EN', 'ZH'];
+  const nextLang = lang === 'vi' ? 'en' : lang === 'en' ? 'zh' : 'vi';
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
@@ -27,17 +29,26 @@ export default function Header() {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 flex-shrink-0">
-            <div className="w-10 h-10 bg-primary flex items-center justify-center flex-shrink-0">
-              <span className="text-white font-bold text-lg">N</span>
+            <div className="w-12 h-12 bg-primary flex items-center justify-center flex-shrink-0">
+              <svg viewBox="0 0 40 40" className="w-8 h-8 fill-white">
+                <rect x="4" y="8" width="4" height="24" />
+                <rect x="4" y="8" width="20" height="4" />
+                <rect x="4" y="18" width="14" height="4" />
+                <rect x="22" y="8" width="4" height="24" />
+                <rect x="28" y="8" width="4" height="24" />
+                <rect x="28" y="8" width="8" height="4" />
+                <rect x="28" y="18" width="8" height="4" />
+                <rect x="28" y="28" width="8" height="4" />
+              </svg>
             </div>
-            <div>
-              <div className="font-bold text-base leading-tight tracking-tight text-gray-900">NHẬT TRÍ THÀNH</div>
-              <div className="text-xs leading-tight tracking-widest uppercase text-gray-500">CÔNG TY TNHH</div>
+            <div className="flex flex-col">
+              <div className="font-bold text-sm leading-tight tracking-wide text-gray-900">NHAT TRI THANH CO., LTD</div>
+              <div className="text-xs leading-tight tracking-wide text-gray-500">CÔNG TY TNHH NHẤT TRÍ THÀNH</div>
             </div>
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-7">
+          <nav className="hidden md:flex items-center gap-6">
             {navLinks.map((link) =>
               link.hasDropdown ? (
                 <div key={link.href} className="relative group">
@@ -52,10 +63,8 @@ export default function Header() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
                     </svg>
                   </Link>
-
-                  {/* Dropdown */}
                   <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                    <div className="bg-white shadow-xl border-t-2 border-primary w-56">
+                    <div className="bg-white shadow-xl border-t-2 border-primary w-64">
                       {cats.map((cat, i) => (
                         <Link
                           key={cat.slug}
@@ -81,24 +90,41 @@ export default function Header() {
               )
             )}
 
-            {/* Language toggle */}
-            <button
-              onClick={toggle}
-              className="flex items-center gap-1 text-xs font-bold border border-gray-300 px-2.5 py-1.5 tracking-widest text-gray-600 hover:border-primary hover:text-primary transition-colors duration-200"
-            >
-              <span className={lang === 'vi' ? 'text-primary font-black' : ''}>VI</span>
-              <span className="text-gray-300">|</span>
-              <span className={lang === 'en' ? 'text-primary font-black' : ''}>EN</span>
-            </button>
+            {/* Language toggle: VI / EN / ZH */}
+            <div className="flex items-center border border-gray-300 text-xs font-bold tracking-widest overflow-hidden">
+              {languages.map((l) => (
+                <button
+                  key={l}
+                  onClick={() => setLanguage(l.toLowerCase())}
+                  className={`px-2.5 py-1.5 transition-colors duration-150 ${
+                    lang === l.toLowerCase()
+                      ? 'bg-primary text-white'
+                      : 'text-gray-600 hover:text-primary'
+                  }`}
+                >
+                  {l}
+                </button>
+              ))}
+            </div>
 
             <Link href="/contact" className="btn-primary text-xs py-2 px-5">{t.nav.quote}</Link>
           </nav>
 
           {/* Mobile buttons */}
-          <div className="md:hidden flex items-center gap-3">
-            <button onClick={toggle} className="text-xs font-bold border border-gray-300 px-2 py-1 tracking-widest text-gray-600">
-              {lang === 'vi' ? 'EN' : 'VI'}
-            </button>
+          <div className="md:hidden flex items-center gap-2">
+            <div className="flex items-center border border-gray-300 text-xs font-bold tracking-widest overflow-hidden">
+              {languages.map((l) => (
+                <button
+                  key={l}
+                  onClick={() => setLanguage(l.toLowerCase())}
+                  className={`px-2 py-1 transition-colors duration-150 ${
+                    lang === l.toLowerCase() ? 'bg-primary text-white' : 'text-gray-600'
+                  }`}
+                >
+                  {l}
+                </button>
+              ))}
+            </div>
             <button className="p-2" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle menu">
               <div className="w-6 h-0.5 mb-1.5 bg-gray-900" />
               <div className="w-6 h-0.5 mb-1.5 bg-gray-900" />
@@ -115,7 +141,6 @@ export default function Header() {
             <Link href="/" className={`block py-3 px-4 text-sm font-semibold uppercase tracking-wider ${pathname === '/' ? 'text-primary bg-red-50' : 'text-gray-700'}`} onClick={() => setMobileOpen(false)}>{t.nav.home}</Link>
             <Link href="/about" className={`block py-3 px-4 text-sm font-semibold uppercase tracking-wider ${pathname === '/about' ? 'text-primary bg-red-50' : 'text-gray-700'}`} onClick={() => setMobileOpen(false)}>{t.nav.about}</Link>
 
-            {/* Mobile Products accordion */}
             <div>
               <button
                 className={`w-full flex items-center justify-between py-3 px-4 text-sm font-semibold uppercase tracking-wider ${isProductsActive ? 'text-primary bg-red-50' : 'text-gray-700'}`}
@@ -139,7 +164,7 @@ export default function Header() {
                     </Link>
                   ))}
                   <Link href="/products" className="block py-2.5 px-4 text-sm text-primary font-semibold" onClick={() => { setMobileOpen(false); setMobileProductsOpen(false); }}>
-                    {lang === 'vi' ? '→ Xem tất cả' : '→ View all'}
+                    {lang === 'vi' ? '→ Xem tất cả' : lang === 'zh' ? '→ 查看全部' : '→ View all'}
                   </Link>
                 </div>
               )}

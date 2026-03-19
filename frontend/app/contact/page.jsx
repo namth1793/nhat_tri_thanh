@@ -1,9 +1,38 @@
 'use client';
+import { useState } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001';
 
 export default function ContactPage() {
   const { t } = useLanguage();
   const c = t.contactPage;
+
+  const [form, setForm] = useState({ name: '', company: '', email: '', phone: '', subject: '', message: '' });
+  const [status, setStatus] = useState('idle'); // idle | sending | success | error
+
+  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!form.name || !form.email || !form.subject || !form.message) return;
+    setStatus('sending');
+    try {
+      const res = await fetch(`${API_URL}/api/contact`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      if (res.ok) {
+        setStatus('success');
+        setForm({ name: '', company: '', email: '', phone: '', subject: '', message: '' });
+      } else {
+        setStatus('error');
+      }
+    } catch {
+      setStatus('error');
+    }
+  };
 
   return (
     <>
@@ -18,6 +47,7 @@ export default function ContactPage() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            {/* Contact info */}
             <div>
               <p className="text-primary font-semibold uppercase tracking-widest text-sm mb-3">{c.infoTag}</p>
               <h2 className="text-3xl font-bold text-gray-900 mb-6">{c.infoTitle}</h2>
@@ -59,45 +89,65 @@ export default function ContactPage() {
               </div>
             </div>
 
+            {/* Contact form */}
             <div className="bg-gray-50 p-8 md:p-10">
               <h3 className="text-xl font-bold text-gray-900 mb-6 uppercase tracking-wide">{c.formTitle}</h3>
-              <form className="space-y-5">
+
+              {status === 'success' && (
+                <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 mb-6 text-sm">
+                  {c.successMsg}
+                </div>
+              )}
+              {status === 'error' && (
+                <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 mb-6 text-sm">
+                  {c.errorMsg}
+                </div>
+              )}
+
+              <form className="space-y-5" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2 uppercase tracking-wide">{c.nameLabel}</label>
-                    <input type="text" className="w-full border border-gray-300 px-4 py-3 text-gray-900 focus:outline-none focus:border-primary bg-white" placeholder={c.namePh} />
+                    <input type="text" name="name" value={form.name} onChange={handleChange} required className="w-full border border-gray-300 px-4 py-3 text-gray-900 focus:outline-none focus:border-primary bg-white" placeholder={c.namePh} />
                   </div>
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2 uppercase tracking-wide">{c.companyLabel}</label>
-                    <input type="text" className="w-full border border-gray-300 px-4 py-3 text-gray-900 focus:outline-none focus:border-primary bg-white" placeholder={c.companyPh} />
+                    <input type="text" name="company" value={form.company} onChange={handleChange} className="w-full border border-gray-300 px-4 py-3 text-gray-900 focus:outline-none focus:border-primary bg-white" placeholder={c.companyPh} />
                   </div>
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2 uppercase tracking-wide">{c.emailFLabel}</label>
-                  <input type="email" className="w-full border border-gray-300 px-4 py-3 text-gray-900 focus:outline-none focus:border-primary bg-white" placeholder="your@email.com" />
+                  <input type="email" name="email" value={form.email} onChange={handleChange} required className="w-full border border-gray-300 px-4 py-3 text-gray-900 focus:outline-none focus:border-primary bg-white" placeholder="your@email.com" />
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2 uppercase tracking-wide">{c.phoneFLabel}</label>
-                  <input type="tel" className="w-full border border-gray-300 px-4 py-3 text-gray-900 focus:outline-none focus:border-primary bg-white" placeholder="+84 xxx xxx xxx" />
+                  <input type="tel" name="phone" value={form.phone} onChange={handleChange} className="w-full border border-gray-300 px-4 py-3 text-gray-900 focus:outline-none focus:border-primary bg-white" placeholder="+84 xxx xxx xxx" />
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2 uppercase tracking-wide">{c.subjectLabel}</label>
-                  <select className="w-full border border-gray-300 px-4 py-3 text-gray-900 focus:outline-none focus:border-primary bg-white">
+                  <select name="subject" value={form.subject} onChange={handleChange} required className="w-full border border-gray-300 px-4 py-3 text-gray-900 focus:outline-none focus:border-primary bg-white">
                     <option value="">{c.subjectPh}</option>
                     {c.subjectOpts.map((opt) => <option key={opt}>{opt}</option>)}
                   </select>
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2 uppercase tracking-wide">{c.messageLabel}</label>
-                  <textarea rows={5} className="w-full border border-gray-300 px-4 py-3 text-gray-900 focus:outline-none focus:border-primary bg-white resize-none" placeholder={c.messagePh} />
+                  <textarea rows={5} name="message" value={form.message} onChange={handleChange} required className="w-full border border-gray-300 px-4 py-3 text-gray-900 focus:outline-none focus:border-primary bg-white resize-none" placeholder={c.messagePh} />
                 </div>
-                <button type="submit" className="btn-primary w-full text-center">{c.sendBtn}</button>
+                <button
+                  type="submit"
+                  disabled={status === 'sending'}
+                  className="btn-primary w-full text-center disabled:opacity-60 disabled:cursor-not-allowed"
+                >
+                  {status === 'sending' ? c.sending : c.sendBtn}
+                </button>
               </form>
             </div>
           </div>
         </div>
       </section>
 
+      {/* Map placeholder */}
       <section className="bg-gray-100 h-64 flex items-center justify-center">
         <p className="text-gray-500 font-medium uppercase tracking-wide text-sm">{c.mapPh}</p>
       </section>

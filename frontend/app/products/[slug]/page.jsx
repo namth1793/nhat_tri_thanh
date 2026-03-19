@@ -11,9 +11,10 @@ export default function ProductCategoryPage() {
   const { lang } = useLanguage();
   const [activeImage, setActiveImage] = useState(0);
 
-  const cats = categoryData[lang];
+  const effectiveLang = categoryData[lang] ? lang : 'en';
+  const cats = categoryData[effectiveLang];
   const cat = cats.find((c) => c.slug === slug);
-  const t = ui[lang];
+  const t = ui[effectiveLang] || ui['en'];
 
   if (!cat) {
     return (

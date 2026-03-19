@@ -1,53 +1,111 @@
 'use client';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useLanguage } from '../../context/LanguageContext';
+
+const slides = [
+  'https://images.unsplash.com/photo-1565689157206-0fddef7589a2?w=1800&q=80',
+  'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1800&q=80',
+  'https://images.unsplash.com/photo-1581093450021-4a7360e9a6b5?w=1800&q=80',
+];
 
 export default function Hero() {
   const { t } = useLanguage();
   const h = t.hero;
+  const [current, setCurrent] = useState(0);
+  const [animKey, setAnimKey] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((c) => (c + 1) % slides.length);
+      setAnimKey((k) => k + 1);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center">
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1565689157206-0fddef7589a2?w=1800&q=80')" }}
-      />
-      <div className="absolute inset-0 bg-gradient-to-r from-gray-950/90 via-gray-900/75 to-gray-900/50" />
+    <section className="relative min-h-screen flex items-center overflow-hidden">
+      {/* Background slides */}
+      {slides.map((src, i) => (
+        <div
+          key={i}
+          className="absolute inset-0 bg-cover bg-center transition-opacity duration-1000"
+          style={{
+            backgroundImage: `url('${src}')`,
+            opacity: i === current ? 1 : 0,
+          }}
+        />
+      ))}
+      <div className="absolute inset-0 bg-gradient-to-r from-gray-950/90 via-gray-900/75 to-gray-900/40" />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24">
-        <div className="max-w-2xl">
-          <div className="flex items-center gap-3 mb-6">
+      {/* Slide indicators */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+        {slides.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => { setCurrent(i); setAnimKey((k) => k + 1); }}
+            className={`transition-all duration-300 ${i === current ? 'w-8 h-2 bg-primary' : 'w-2 h-2 bg-white/50 hover:bg-white/80'}`}
+          />
+        ))}
+      </div>
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-32 w-full">
+        <div className="max-w-3xl">
+          {/* Tag */}
+          <div
+            key={`tag-${animKey}`}
+            className="flex items-center gap-3 mb-5"
+            style={{ animation: 'fadeInUp 0.6s ease both' }}
+          >
             <div className="w-8 h-0.5 bg-primary" />
             <span className="text-primary font-semibold uppercase tracking-widest text-sm">{h.tag}</span>
           </div>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight mb-6">
-            {h.line1}
-            <br />
-            <span className="text-primary">{h.line2}</span>
-            <br />
-            {h.line3}
+
+          {/* Sub1 */}
+          <p
+            key={`sub1-${animKey}`}
+            className="text-gray-300 text-base tracking-wide mb-3"
+            style={{ animation: 'fadeInUp 0.6s ease 0.1s both' }}
+          >
+            {h.sub1}
+          </p>
+
+          {/* Main headline */}
+          <h1
+            key={`main-${animKey}`}
+            className="text-4xl sm:text-5xl lg:text-[3.5rem] font-black text-white leading-tight mb-4"
+            style={{ animation: 'fadeInUp 0.7s ease 0.2s both' }}
+          >
+            {h.main}
           </h1>
-          <p className="text-gray-300 text-lg leading-relaxed mb-10 max-w-xl">{h.sub}</p>
-          <div className="flex flex-wrap gap-4">
+
+          {/* Sub2 */}
+          <p
+            key={`sub2-${animKey}`}
+            className="text-gray-300 text-base leading-relaxed mb-10 max-w-2xl"
+            style={{ animation: 'fadeInUp 0.6s ease 0.35s both' }}
+          >
+            {h.sub2}
+          </p>
+
+          {/* Buttons */}
+          <div
+            key={`btns-${animKey}`}
+            className="flex flex-wrap gap-4"
+            style={{ animation: 'fadeInUp 0.6s ease 0.5s both' }}
+          >
             <Link href="/products" className="btn-primary">{h.btn1}</Link>
             <Link href="/contact" className="btn-outline">{h.btn2}</Link>
           </div>
         </div>
-
-        <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-px bg-white/10">
-          {[
-            { value: '100+', label: h.stat1 },
-            { value: '10+', label: h.stat2 },
-            { value: '200+', label: h.stat3 },
-            { value: h.stat4, label: '' },
-          ].map((item, i) => (
-            <div key={i} className="bg-black/30 backdrop-blur-sm px-6 py-5">
-              <div className="text-2xl font-black text-white">{item.value}</div>
-              <div className="text-gray-400 text-xs uppercase tracking-wide mt-1">{item.label}</div>
-            </div>
-          ))}
-        </div>
       </div>
+
+      <style>{`
+        @keyframes fadeInUp {
+          from { opacity: 0; transform: translateY(24px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
     </section>
   );
 }

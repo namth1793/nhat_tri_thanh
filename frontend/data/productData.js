@@ -254,16 +254,22 @@ export const categoryData = {
 
 export const categoryLinks = {
   vi: [
-    { name: 'Máy Móc & Thiết Bị', slug: 'may-moc-thiet-bi', desc: 'Lò luyện thép, thiết bị đúc, gia công cơ khí' },
-    { name: 'Phụ Tùng & Linh Kiện', slug: 'phu-tung-linh-kien', desc: 'Phụ kiện lò, phụ tùng máy đúc, vòng bi' },
-    { name: 'Nguyên Liệu Luyện Kim', slug: 'nguyen-lieu-luyen-kim', desc: 'Ferosilicon, SiCaBa, chất gom xỉ, cát dẫn dòng' },
+    { name: 'Thiết Bị & Dây Chuyền Sản Xuất', slug: 'may-moc-thiet-bi', desc: 'Lò luyện thép, thiết bị đúc, gia công cơ khí' },
+    { name: 'Vật Tư, Phụ Tùng & Linh Kiện', slug: 'phu-tung-linh-kien', desc: 'Phụ kiện lò, phụ tùng máy đúc, vòng bi' },
+    { name: 'Nguyên Liệu & Phụ Gia Luyện Kim', slug: 'nguyen-lieu-luyen-kim', desc: 'Ferosilicon, SiCaBa, chất gom xỉ, cát dẫn dòng' },
     { name: 'Vật Liệu Chịu Lửa', slug: 'vat-lieu-chiu-lua', desc: 'Gạch chịu lửa, vật liệu định hình & không định hình' },
   ],
   en: [
-    { name: 'Machinery & Equipment', slug: 'may-moc-thiet-bi', desc: 'Steel furnaces, casting equipment, CNC machines' },
-    { name: 'Spare Parts & Accessories', slug: 'phu-tung-linh-kien', desc: 'Furnace parts, casting machine parts, bearings' },
-    { name: 'Metallurgical Raw Materials', slug: 'nguyen-lieu-luyen-kim', desc: 'Ferrosilicon, SiCaBa, slag coagulant, filler sand' },
+    { name: 'Equipment & Production Lines', slug: 'may-moc-thiet-bi', desc: 'Steel furnaces, casting equipment, CNC machines' },
+    { name: 'Materials, Spare Parts & Components', slug: 'phu-tung-linh-kien', desc: 'Furnace parts, casting machine parts, bearings' },
+    { name: 'Metallurgical Raw Materials & Additives', slug: 'nguyen-lieu-luyen-kim', desc: 'Ferrosilicon, SiCaBa, slag coagulant, filler sand' },
     { name: 'Refractory Materials', slug: 'vat-lieu-chiu-lua', desc: 'Refractory bricks, shaped & unshaped refractories' },
+  ],
+  zh: [
+    { name: '设备与生产线', slug: 'may-moc-thiet-bi', desc: '炼钢炉、铸造设备、数控机床' },
+    { name: '物资、配件与替换零件', slug: 'phu-tung-linh-kien', desc: '炉具零件、铸造机配件、轴承' },
+    { name: '冶金原材料与添加剂', slug: 'nguyen-lieu-luyen-kim', desc: '硅铁、SiCaBa、集渣剂、填充砂' },
+    { name: '耐火材料', slug: 'vat-lieu-chiu-lua', desc: '耐火砖、定形和不定形耐火产品' },
   ],
 };
 

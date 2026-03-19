@@ -1,34 +1,85 @@
 'use client';
+import { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
+
+function useCountUp(target, duration = 1800, start = false) {
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    if (!start) return;
+    const num = parseInt(target.replace(/\D/g, '')) || 0;
+    if (num === 0) return;
+    let startTime = null;
+    const step = (timestamp) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.floor(ease * num));
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }, [start, target, duration]);
+  return count;
+}
+
+function StatCard({ value, label, delay, started }) {
+  const num = useCountUp(value, 1800, started);
+  const suffix = value.replace(/[\d]/g, '');
+  const isNetwork = !value.match(/\d/);
+
+  return (
+    <div
+      className="bg-primary px-8 py-10 text-center hover:bg-primary-dark transition-colors duration-200"
+      style={{ animation: started ? `fadeInUp 0.6s ease ${delay}s both` : 'none' }}
+    >
+      <div className="text-4xl md:text-5xl font-black text-white mb-3">
+        {isNetwork ? (
+          <span className="text-2xl md:text-3xl">{value}</span>
+        ) : (
+          <>{num}{suffix}</>
+        )}
+      </div>
+      <div className="text-red-100 font-semibold uppercase tracking-wide text-sm">{label}</div>
+    </div>
+  );
+}
 
 export default function Stats() {
   const { t } = useLanguage();
   const s = t.stats;
+  const ref = useRef(null);
+  const [started, setStarted] = useState(false);
+
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setStarted(true); obs.disconnect(); } },
+      { threshold: 0.3 }
+    );
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, []);
 
   const stats = [
-    { value: s.s1v, label: s.s1l, desc: s.s1d },
-    { value: s.s2v, label: s.s2l, desc: s.s2d },
-    { value: s.s3v, label: s.s3l, desc: s.s3d },
-    { value: s.s4v, label: s.s4l, desc: s.s4d },
+    { value: s.s1v, label: s.s1l },
+    { value: s.s2v, label: s.s2l },
+    { value: s.s3v, label: s.s3l },
+    { value: s.s4l, label: '' },
   ];
 
   return (
-    <section className="bg-primary py-20">
+    <section className="bg-primary py-16" ref={ref}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-white">{s.title}</h2>
-          <div className="w-12 h-0.5 bg-red-300 mx-auto mt-4" />
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-red-800">
-          {stats.map((stat) => (
-            <div key={stat.label} className="bg-primary px-8 py-10 text-center hover:bg-primary-dark transition-colors duration-200">
-              <div className="text-4xl md:text-5xl font-black text-white mb-2">{stat.value}</div>
-              <div className="text-red-100 font-semibold uppercase tracking-wide text-sm mb-2">{stat.label}</div>
-              <div className="text-red-300 text-sm">{stat.desc}</div>
-            </div>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-red-800">
+          {stats.map((stat, i) => (
+            <StatCard key={stat.label + i} value={stat.value} label={stat.label} delay={i * 0.1} started={started} />
           ))}
         </div>
       </div>
+      <style>{`
+        @keyframes fadeInUp {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
     </section>
   );
 }

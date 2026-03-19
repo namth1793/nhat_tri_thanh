@@ -1,6 +1,7 @@
 import './globals.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import FloatingContact from '../components/FloatingContact';
 import Providers from '../components/Providers';
 
 export const metadata = {
@@ -17,6 +18,7 @@ export default function RootLayout({ children }) {
           <Header />
           <main>{children}</main>
           <Footer />
+          <FloatingContact />
         </Providers>
       </body>
     </html>
