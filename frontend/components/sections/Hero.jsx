@@ -24,7 +24,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center overflow-hidden -mt-16 md:-mt-20">
       {/* Background slides */}
       {slides.map((src, i) => (
         <div
@@ -50,11 +50,11 @@ export default function Hero() {
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-32 w-full">
-        <div className="max-w-3xl">
+        <div className="max-w-3xl mx-auto text-center">
           {/* Tag */}
           <div
             key={`tag-${animKey}`}
-            className="flex items-center gap-3 mb-5"
+            className="flex items-center justify-center gap-3 mb-5"
             style={{ animation: 'fadeInUp 0.6s ease both' }}
           >
             <div className="w-8 h-0.5 bg-primary" />
@@ -82,7 +82,7 @@ export default function Hero() {
           {/* Sub2 */}
           <p
             key={`sub2-${animKey}`}
-            className="text-gray-300 text-base leading-relaxed mb-10 max-w-2xl"
+            className="text-gray-300 text-base leading-relaxed mb-10 max-w-2xl mx-auto"
             style={{ animation: 'fadeInUp 0.6s ease 0.35s both' }}
           >
             {h.sub2}
@@ -91,7 +91,7 @@ export default function Hero() {
           {/* Buttons */}
           <div
             key={`btns-${animKey}`}
-            className="flex flex-wrap gap-4"
+            className="flex flex-wrap gap-4 justify-center"
             style={{ animation: 'fadeInUp 0.6s ease 0.5s both' }}
           >
             <Link href="/products" className="btn-primary">{h.btn1}</Link>

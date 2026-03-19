@@ -33,7 +33,7 @@ export default function News() {
                   </span>
                 </div>
               </div>
-              <div className="p-6">
+              <div className="p-7">
                 <p className="text-gray-400 text-xs uppercase tracking-wider mb-3">{article.date}</p>
                 <h3 className="font-bold text-gray-900 text-lg leading-snug mb-3 group-hover:text-primary transition-colors duration-200">
                   {article.title}

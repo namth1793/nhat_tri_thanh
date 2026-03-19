@@ -28,7 +28,7 @@ function StatCard({ value, label, delay, started }) {
 
   return (
     <div
-      className="bg-primary px-4 py-6 text-center hover:bg-primary-dark transition-colors duration-200"
+      className="bg-primary px-6 py-8 text-center hover:bg-primary-dark transition-colors duration-200"
       style={{ animation: started ? `fadeInUp 0.6s ease ${delay}s both` : 'none' }}
     >
       <div className="text-2xl md:text-3xl font-black text-white mb-1.5">
@@ -66,7 +66,7 @@ export default function Stats() {
   ];
 
   return (
-    <section className="bg-primary py-6" ref={ref}>
+    <section className="bg-primary py-10" ref={ref}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-red-800">
           {stats.map((stat, i) => (

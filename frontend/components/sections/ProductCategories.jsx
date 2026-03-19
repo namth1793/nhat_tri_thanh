@@ -36,7 +36,7 @@ export default function ProductCategories() {
                 />
                 <div className="absolute inset-0 bg-gray-900/30 group-hover:bg-gray-900/10 transition-colors duration-300" />
               </div>
-              <div className="p-6">
+              <div className="p-7">
                 <h3 className="font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors duration-200 leading-tight">{cat.name}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed mb-5">{cat.desc}</p>
                 <Link
