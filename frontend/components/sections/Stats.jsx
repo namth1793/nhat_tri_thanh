@@ -62,7 +62,7 @@ export default function Stats() {
     { value: s.s1v, label: s.s1l },
     { value: s.s2v, label: s.s2l },
     { value: s.s3v, label: s.s3l },
-    { value: s.s4l, label: '' },
+    { value: s.s4v, label: s.s4l },
   ];
 
   return (
