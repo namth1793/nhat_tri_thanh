@@ -4,17 +4,21 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useLanguage } from '../../../context/LanguageContext';
-import { categoryData, ui } from '../../../data/productData';
+import { categoryData, subProductData, ui } from '../../../data/productData';
 
 export default function ProductCategoryPage() {
   const { slug } = useParams();
   const { lang } = useLanguage();
-  const [activeImage, setActiveImage] = useState(0);
+  const [selectedSub, setSelectedSub] = useState(0);
 
   const effectiveLang = categoryData[lang] ? lang : 'en';
   const cats = categoryData[effectiveLang];
   const cat = cats.find((c) => c.slug === slug);
   const t = ui[effectiveLang] || ui['en'];
+
+  const subLang = subProductData[effectiveLang] ? effectiveLang : 'en';
+  const subs = (subProductData[subLang] && subProductData[subLang][slug]) || [];
+  const activeSub = subs[selectedSub];
 
   if (!cat) {
     return (
@@ -26,6 +30,8 @@ export default function ProductCategoryPage() {
       </div>
     );
   }
+
+  const mainImage = activeSub ? activeSub.image : cat.heroImage;
 
   return (
     <>
@@ -42,41 +48,69 @@ export default function ProductCategoryPage() {
         </div>
       </div>
 
-      {/* Hero: Image + Specs */}
+      {/* Hero: Image + Info */}
       <section className="bg-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
-            {/* Left: Image */}
+            {/* Left: Main image + Sub-product thumbnail strip */}
             <div>
               <div className="relative h-80 md:h-[420px] bg-gray-100 overflow-hidden">
                 <Image
-                  src={cat.heroImage}
-                  alt={cat.name}
+                  src={mainImage}
+                  alt={activeSub ? activeSub.name : cat.name}
                   fill
-                  className="object-cover"
+                  className="object-cover transition-opacity duration-300"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   priority
                 />
               </div>
-              {/* Thumbnail strip from models */}
-              <div className="flex gap-2 mt-3 overflow-x-auto pb-1">
-                {cat.models.slice(0, 5).map((m, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setActiveImage(i)}
-                    className={`flex-shrink-0 w-16 h-16 relative border-2 transition-colors ${activeImage === i ? 'border-primary' : 'border-transparent hover:border-gray-300'}`}
-                  >
-                    <Image src={m.image} alt={m.name} fill className="object-cover" sizes="64px" />
-                  </button>
-                ))}
-              </div>
+
+              {/* Sub-product thumbnail strip */}
+              {subs.length > 0 && (
+                <div className="flex gap-2 mt-3 overflow-x-auto pb-1">
+                  {subs.map((sub, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setSelectedSub(i)}
+                      title={sub.name}
+                      className={`flex-shrink-0 w-16 h-16 relative border-2 transition-colors ${
+                        selectedSub === i ? 'border-primary' : 'border-transparent hover:border-gray-300'
+                      }`}
+                    >
+                      <Image src={sub.image} alt={sub.name} fill className="object-cover" sizes="64px" />
+                      {selectedSub === i && (
+                        <div className="absolute inset-0 bg-primary/20" />
+                      )}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
 
-            {/* Right: Info */}
+            {/* Right: Info — updates with selected sub-product */}
             <div>
-              <p className="text-primary text-xs font-bold uppercase tracking-widest mb-2">{t.breadcrumbProducts}</p>
-              <h1 className="text-2xl md:text-3xl font-black text-gray-900 mb-2 leading-tight">{cat.name}</h1>
-              <p className="text-gray-500 italic mb-6">{cat.tagline}</p>
+              <p className="text-primary text-xs font-bold uppercase tracking-widest mb-2">{cat.name}</p>
+
+              {/* Sub-product name */}
+              <h1 className="text-2xl md:text-3xl font-black text-gray-900 mb-2 leading-tight">
+                {activeSub ? activeSub.name : cat.name}
+              </h1>
+
+              {/* Tag badge + application */}
+              {activeSub && (
+                <div className="mb-5">
+                  {activeSub.tag && (
+                    <span className="inline-block bg-primary text-white text-xs font-bold px-3 py-1 uppercase tracking-wide mr-2 mb-2">
+                      {activeSub.tag}
+                    </span>
+                  )}
+                  <p className="text-gray-600 text-sm leading-relaxed">{activeSub.app}</p>
+                </div>
+              )}
+
+              {!activeSub && (
+                <p className="text-gray-500 italic mb-6">{cat.tagline}</p>
+              )}
 
               {/* Specs table */}
               <div className="mb-6">
@@ -95,6 +129,25 @@ export default function ProductCategoryPage() {
                   </tbody>
                 </table>
               </div>
+
+              {/* Sub-product navigation dots */}
+              {subs.length > 0 && (
+                <div className="flex flex-wrap gap-1.5 mb-5">
+                  {subs.map((sub, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setSelectedSub(i)}
+                      className={`text-xs px-2.5 py-1 border transition-colors duration-150 ${
+                        selectedSub === i
+                          ? 'bg-primary text-white border-primary'
+                          : 'border-gray-300 text-gray-600 hover:border-primary hover:text-primary'
+                      }`}
+                    >
+                      {i + 1}
+                    </button>
+                  ))}
+                </div>
+              )}
 
               {/* Badges */}
               <div className="flex flex-wrap gap-2 mb-8">
@@ -119,8 +172,55 @@ export default function ProductCategoryPage() {
         </div>
       </section>
 
+      {/* Sub-product list (full grid) */}
+      {subs.length > 0 && (
+        <section className="bg-gray-50 py-12 border-t border-gray-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+              <div className="w-1 h-6 bg-primary" />
+              {lang === 'vi' ? 'Danh Sách Sản Phẩm' : lang === 'zh' ? '产品列表' : 'Product List'}
+            </h2>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+              {subs.map((sub, i) => (
+                <button
+                  key={i}
+                  onClick={() => { setSelectedSub(i); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                  className={`text-left border transition-all duration-200 group ${
+                    selectedSub === i ? 'border-primary shadow-sm' : 'border-gray-200 hover:border-primary'
+                  }`}
+                >
+                  <div className="relative h-36 overflow-hidden bg-gray-100">
+                    <Image
+                      src={sub.image}
+                      alt={sub.name}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-400"
+                      sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 25vw"
+                    />
+                    <div className={`absolute top-2 right-2 text-white text-xs px-2 py-0.5 font-semibold ${selectedSub === i ? 'bg-primary' : 'bg-gray-700'}`}>
+                      {String(i + 1).padStart(2, '0')}
+                    </div>
+                    {sub.tag && (
+                      <div className="absolute top-2 left-2 bg-white/90 text-primary text-xs font-bold px-2 py-0.5">
+                        {sub.tag}
+                      </div>
+                    )}
+                  </div>
+                  <div className="p-3">
+                    <p className={`font-semibold text-sm leading-tight transition-colors ${selectedSub === i ? 'text-primary' : 'text-gray-900 group-hover:text-primary'}`}>
+                      {sub.name}
+                    </p>
+                    <p className="text-gray-400 text-xs mt-1 line-clamp-2">{sub.app}</p>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Description */}
-      <section className="bg-gray-50 py-12 border-t border-gray-200">
+      <section className="bg-white py-12 border-t border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-xl font-bold text-gray-900 mb-5 flex items-center gap-3">
             <div className="w-1 h-6 bg-primary" />
@@ -142,38 +242,6 @@ export default function ProductCategoryPage() {
         </div>
       </section>
 
-      {/* Product Models Grid */}
-      <section className="bg-white py-12 border-t border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-            <div className="w-1 h-6 bg-primary" />
-            {t.modelsTitle}
-          </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-            {cat.models.map((model, i) => (
-              <div key={i} className="border border-gray-200 hover:border-primary group transition-colors duration-200 cursor-pointer">
-                <div className="relative h-36 overflow-hidden bg-gray-100">
-                  <Image
-                    src={model.image}
-                    alt={model.name}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-400"
-                    sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 25vw"
-                  />
-                  <div className="absolute top-2 right-2 bg-primary text-white text-xs px-2 py-0.5 font-semibold">
-                    {String(i + 1).padStart(2, '0')}
-                  </div>
-                </div>
-                <div className="p-3">
-                  <p className="font-semibold text-gray-900 text-sm leading-tight group-hover:text-primary transition-colors">{model.name}</p>
-                  <p className="text-gray-400 text-xs mt-1">{model.spec}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Ordering Process */}
       <section className="bg-gray-900 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -183,7 +251,6 @@ export default function ProductCategoryPage() {
             <p className="text-gray-400 max-w-2xl mx-auto text-sm leading-relaxed">{t.processSub}</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Step 1 */}
             <div className="bg-gray-800 p-8 border-l-4 border-primary">
               <div className="flex items-center gap-4 mb-5">
                 <div className="w-12 h-12 bg-primary flex items-center justify-center text-white font-black text-xl flex-shrink-0">01</div>
@@ -198,7 +265,6 @@ export default function ProductCategoryPage() {
                 ))}
               </ul>
             </div>
-            {/* Step 2 */}
             <div className="bg-gray-800 p-8 border-l-4 border-gray-600">
               <div className="flex items-center gap-4 mb-5">
                 <div className="w-12 h-12 bg-gray-600 flex items-center justify-center text-white font-black text-xl flex-shrink-0">02</div>
@@ -264,7 +330,7 @@ export default function ProductCategoryPage() {
       <section className="bg-gray-50 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h3 className="text-sm font-bold text-gray-500 uppercase tracking-widest mb-5">
-            {lang === 'vi' ? 'Danh mục sản phẩm khác' : 'Other product categories'}
+            {lang === 'vi' ? 'Danh mục sản phẩm khác' : lang === 'zh' ? '其他产品类别' : 'Other product categories'}
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {cats.filter((c) => c.slug !== slug).map((c) => (

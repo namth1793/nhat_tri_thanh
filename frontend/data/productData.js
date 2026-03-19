@@ -273,6 +273,111 @@ export const categoryLinks = {
   ],
 };
 
+// Sub-products for each category (used in product detail page gallery)
+const IMG = [
+  'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=600&q=80',
+  'https://images.unsplash.com/photo-1565689157206-0fddef7589a2?w=600&q=80',
+  'https://images.unsplash.com/photo-1581093450021-4a7360e9a6b5?w=600&q=80',
+  'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
+  'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80',
+];
+const img = (i) => IMG[i % IMG.length];
+
+export const subProductData = {
+  vi: {
+    'may-moc-thiet-bi': [
+      { name: 'Lò Chuyển (BOF)', tag: 'Nổi Bật', app: 'Luyện thép từ nước gang — công nghệ BOF/LD', image: img(0) },
+      { name: 'Lò Điện Hồ Quang (EAF)', tag: 'Nổi Bật', app: 'Luyện thép từ phế liệu — điện cực graphite', image: img(1) },
+      { name: 'Lò Điện Trung Tần (IMF)', tag: 'Nổi Bật', app: 'Luyện thép từ phế liệu — công suất 500kg-30T', image: img(2) },
+      { name: 'Máy Đúc Liên Tục (CCM)', tag: 'Nổi Bật', app: 'Đúc phôi thép liên tục từ nước thép/nước gang', image: img(3) },
+      { name: 'Thùng Rót Thép (Ladle)', tag: '', app: 'Chứa và rót nước thép trong quy trình luyện thép', image: img(4) },
+      { name: 'Thùng Trung Gian (Tundish)', tag: '', app: 'Phân phối nước thép từ ladle vào khuôn đúc', image: img(0) },
+      { name: 'Hệ Thống Thổi Oxy', tag: '', app: 'Súng và ống thổi oxy cho quá trình luyện thép', image: img(1) },
+      { name: 'Lò Cao (Blast Furnace)', tag: '', app: 'Luyện gang từ quặng sắt — nền tảng sản xuất thép', image: img(2) },
+    ],
+    'phu-tung-linh-kien': [
+      { name: 'Khuôn Đồng (Copper Mold)', tag: 'Nổi Bật', app: 'Khuôn đúc bằng đồng cho máy đúc liên tục', image: img(3) },
+      { name: 'Hộp Kết Tinh (Mold Oscillator)', tag: 'Nổi Bật', app: 'Bộ dao động khuôn trong máy đúc liên tục', image: img(4) },
+      { name: 'Que Đo Nhiệt Độ', tag: 'Bán Chạy', app: 'Đo nhiệt độ nước thép trong lò và thùng rót', image: img(0) },
+      { name: 'Phíp Cách Nhiệt / Phíp Đo', tag: 'Bán Chạy', app: 'Bảo vệ đầu đo và cách nhiệt trong môi trường lò', image: img(1) },
+      { name: 'Kẹp Gông / Kẹp KK', tag: 'Bán Chạy', app: 'Kẹp cố định kết nối trong hệ thống luyện thép', image: img(2) },
+      { name: 'Hệ Thống Làm Mát', tag: '', app: 'Ống và thiết bị làm mát cho máy đúc và lò điện', image: img(3) },
+      { name: 'Van Thùng Rót Thép (Slide Gate)', tag: '', app: 'Van điều khiển dòng thép từ thùng rót thép', image: img(4) },
+      { name: 'Dây Đồng Cáp Thuỷ', tag: '', app: 'Cáp đồng mềm dẫn điện cho hệ thống lò điện', image: img(0) },
+    ],
+    'nguyen-lieu-luyen-kim': [
+      { name: 'Ferro Mangan (FeMn)', tag: 'Nổi Bật', app: 'Hợp kim hóa Mn và khử oxy trong luyện thép', image: img(1) },
+      { name: 'Ferro Silic (FeSi)', tag: 'Nổi Bật', app: 'Khử oxy và hợp kim hóa Si cho thép và gang đúc', image: img(2) },
+      { name: 'Silicon Mangan (SiMn)', tag: 'Nổi Bật', app: 'Kết hợp khử oxy và hợp kim hóa cả Si và Mn', image: img(3) },
+      { name: 'Ferro Chrome (FeCr)', tag: 'Nổi Bật', app: 'Hợp kim hóa Cr cho thép không gỉ và thép hợp kim', image: img(4) },
+      { name: 'Silic Canxi (CaSi)', tag: '', app: 'Xử lý phi kim và cải thiện độ sạch nước thép', image: img(0) },
+      { name: 'Silic Cacbit (SiC)', tag: '', app: 'Tăng cacbon và khử oxy trong luyện thép và đúc gang', image: img(1) },
+      { name: 'Nhôm Thỏi (Al Ingot)', tag: 'Nổi Bật', app: 'Khử oxy mạnh và điều chỉnh kích thước hạt thép', image: img(2) },
+      { name: 'Than Điện Cực (Electrode Carbon)', tag: 'Nổi Bật', app: 'Điện cực graphite cho lò điện hồ quang EAF', image: img(3) },
+      { name: 'Graphite Petroleum Coke (GPC)', tag: 'Nổi Bật', app: 'Tăng cacbon độ tinh khiết cao cho luyện thép', image: img(4) },
+      { name: 'Calcined Petroleum Coke (CPC)', tag: '', app: 'Nguyên liệu cacbon cho điện cực và hợp kim', image: img(0) },
+      { name: 'Chất Gom Xỉ', tag: 'Nổi Bật', app: 'Gom và xử lý xỉ, giảm thất thoát kim loại', image: img(1) },
+      { name: 'Chất Tạo Xỉ / Tinh Luyện', tag: '', app: 'Tinh luyện nước thép, loại bỏ tạp chất phi kim', image: img(2) },
+    ],
+    'vat-lieu-chiu-lua': [
+      { name: 'Vật Liệu Đầm Lò', tag: 'Nổi Bật', app: 'Đầm lót cho lò trung tần và lò điện hồ quang', image: img(3) },
+      { name: 'Gạch Chịu Lửa Lò Chuyển (BOF)', tag: 'Nổi Bật', app: 'Lớp lót chịu lửa cho lò chuyển BOF/LD', image: img(4) },
+      { name: 'Gạch Đáy Thùng Rót Thép', tag: 'Nổi Bật', app: 'Gạch và khối chịu lửa cho đáy thùng ladle', image: img(0) },
+      { name: 'Gạch Xả Trên (Upper Nozzle)', tag: 'Thực Tế', app: 'Gạch xả trên cho hệ thống slide gate thùng rót', image: img(1) },
+      { name: 'Gạch Xả Dưới (Lower Nozzle)', tag: 'Thực Tế', app: 'Gạch xả dưới cho hệ thống slide gate thùng rót', image: img(2) },
+      { name: 'Vật Liệu Chịu Lửa Tundish', tag: '', app: 'Lót chịu lửa cho tundish trong đúc liên tục', image: img(3) },
+      { name: 'Vật Liệu Giữ Nhiệt Tundish', tag: '', app: 'Giữ nhiệt cho nước thép trong tundish', image: img(4) },
+      { name: 'Gạch & Bê Tông Chịu Nhiệt CN', tag: '', app: 'Vật liệu chịu nhiệt cho lò công nghiệp và ống dẫn', image: img(0) },
+    ],
+  },
+  en: {
+    'may-moc-thiet-bi': [
+      { name: 'Converter Furnace (BOF)', tag: 'Featured', app: 'Steel smelting from molten iron — BOF/LD technology', image: img(0) },
+      { name: 'Electric Arc Furnace (EAF)', tag: 'Featured', app: 'Steel smelting from scrap metal — graphite electrodes', image: img(1) },
+      { name: 'Induction Melting Furnace (IMF)', tag: 'Featured', app: 'Steel smelting from scrap metal — 500kg to 30T', image: img(2) },
+      { name: 'Continuous Casting Machine (CCM)', tag: 'Featured', app: 'Continuous casting of steel billets from molten steel', image: img(3) },
+      { name: 'Steel Ladle', tag: '', app: 'Holding and transferring molten steel in steelmaking', image: img(4) },
+      { name: 'Tundish', tag: '', app: 'Distributing molten steel from ladle to casting mold', image: img(0) },
+      { name: 'Oxygen Blowing System', tag: '', app: 'Oxygen lances and pipes for steelmaking process', image: img(1) },
+      { name: 'Blast Furnace', tag: '', app: 'Iron smelting from iron ore — foundation of steelmaking', image: img(2) },
+    ],
+    'phu-tung-linh-kien': [
+      { name: 'Copper Mold', tag: 'Featured', app: 'Copper casting mold for continuous casting machines', image: img(3) },
+      { name: 'Mold Oscillator', tag: 'Featured', app: 'Mold oscillation unit in continuous casting machines', image: img(4) },
+      { name: 'Temperature Measurement Lance', tag: 'Best Seller', app: 'Measuring molten steel temperature in furnaces and ladles', image: img(0) },
+      { name: 'Thermal Protection Sleeve / Sampler', tag: 'Best Seller', app: 'Protecting measuring probes in furnace environment', image: img(1) },
+      { name: 'Clamp Connector / KK Clamp', tag: 'Best Seller', app: 'Fixing connections in steelmaking systems', image: img(2) },
+      { name: 'Cooling System', tag: '', app: 'Pipes and cooling equipment for casting machines and furnaces', image: img(3) },
+      { name: 'Slide Gate Valve', tag: '', app: 'Flow control valve for molten steel from steel ladle', image: img(4) },
+      { name: 'Water-Cooled Copper Flexible Cable', tag: '', app: 'Flexible copper cable for electrical conduction in furnace systems', image: img(0) },
+    ],
+    'nguyen-lieu-luyen-kim': [
+      { name: 'Ferro Manganese (FeMn)', tag: 'Featured', app: 'Mn alloying and deoxidation in steelmaking', image: img(1) },
+      { name: 'Ferro Silicon (FeSi)', tag: 'Featured', app: 'Deoxidation and Si alloying for steel and cast iron', image: img(2) },
+      { name: 'Silicon Manganese (SiMn)', tag: 'Featured', app: 'Combined Si and Mn deoxidation and alloying', image: img(3) },
+      { name: 'Ferro Chrome (FeCr)', tag: 'Featured', app: 'Cr alloying for stainless and alloy steels', image: img(4) },
+      { name: 'Calcium Silicon (CaSi)', tag: '', app: 'Non-metallic inclusion treatment and steel cleanliness', image: img(0) },
+      { name: 'Silicon Carbide (SiC)', tag: '', app: 'Carbon raiser and deoxidizer for steelmaking and cast iron', image: img(1) },
+      { name: 'Aluminum Ingot', tag: 'Featured', app: 'Strong deoxidizer and grain size controller', image: img(2) },
+      { name: 'Electrode Carbon (Graphite)', tag: 'Featured', app: 'Graphite electrodes for electric arc furnaces (EAF)', image: img(3) },
+      { name: 'Graphite Petroleum Coke (GPC)', tag: 'Featured', app: 'High-purity carbon raiser for steelmaking', image: img(4) },
+      { name: 'Calcined Petroleum Coke (CPC)', tag: '', app: 'Carbon raw material for electrodes and alloys', image: img(0) },
+      { name: 'Slag Coagulant', tag: 'Featured', app: 'Slag aggregation and treatment, reducing metal losses', image: img(1) },
+      { name: 'Slag Former / Ladle Refining Flux', tag: '', app: 'Steel refining and non-metallic inclusion removal', image: img(2) },
+    ],
+    'vat-lieu-chiu-lua': [
+      { name: 'Furnace Ramming / Lining Material', tag: 'Featured', app: 'Ramming and lining for induction and arc furnaces', image: img(3) },
+      { name: 'BOF Converter Refractory Brick', tag: 'Featured', app: 'Refractory lining for BOF/LD converter furnaces', image: img(4) },
+      { name: 'Ladle Bottom Brick', tag: 'Featured', app: 'Refractory bricks and blocks for steel ladle bottoms', image: img(0) },
+      { name: 'Upper Nozzle Brick', tag: 'Practical', app: 'Upper nozzle refractory for ladle slide gate system', image: img(1) },
+      { name: 'Lower Nozzle Brick', tag: 'Practical', app: 'Lower nozzle refractory for ladle slide gate system', image: img(2) },
+      { name: 'Tundish Refractory Materials', tag: '', app: 'Refractory lining for tundishes in continuous casting', image: img(3) },
+      { name: 'Tundish Heat Retention Material', tag: '', app: 'Heat retention covers and compounds for tundish', image: img(4) },
+      { name: 'Industrial Refractory Brick & Concrete', tag: '', app: 'Heat-resistant materials for industrial furnaces and piping', image: img(0) },
+    ],
+  },
+};
+
 export const ui = {
   vi: {
     breadcrumbHome: 'Trang chủ',

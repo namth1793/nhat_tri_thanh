@@ -1,6 +1,6 @@
 'use client';
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
 
 const slides = [
@@ -73,7 +73,7 @@ export default function Hero() {
           {/* Main headline */}
           <h1
             key={`main-${animKey}`}
-            className="text-4xl sm:text-5xl lg:text-[3.5rem] font-black text-white leading-tight mb-4"
+            className="text-4xl sm:text-5xl lg:text-[3.5rem] font-black text-white leading-loose mb-4 uppercase"
             style={{ animation: 'fadeInUp 0.7s ease 0.2s both' }}
           >
             {h.main}

@@ -16,6 +16,7 @@ export default function Header() {
     { label: t.nav.home, href: '/' },
     { label: t.nav.about, href: '/about' },
     { label: t.nav.products, href: '/products', hasDropdown: true },
+    { label: t.nav.news, href: '/news' },
     { label: t.nav.contact, href: '/contact' },
   ];
 
@@ -170,6 +171,7 @@ export default function Header() {
               )}
             </div>
 
+            <Link href="/news" className={`block py-3 px-4 text-sm font-semibold uppercase tracking-wider ${pathname === '/news' ? 'text-primary bg-red-50' : 'text-gray-700'}`} onClick={() => setMobileOpen(false)}>{t.nav.news}</Link>
             <Link href="/contact" className={`block py-3 px-4 text-sm font-semibold uppercase tracking-wider ${pathname === '/contact' ? 'text-primary bg-red-50' : 'text-gray-700'}`} onClick={() => setMobileOpen(false)}>{t.nav.contact}</Link>
             <div className="pt-2">
               <Link href="/contact" className="btn-primary block text-center text-xs" onClick={() => setMobileOpen(false)}>{t.nav.quote}</Link>
