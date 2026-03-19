@@ -67,7 +67,7 @@ export default function Stats() {
 
   return (
     <section className="bg-primary py-6" ref={ref}>
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-red-800">
           {stats.map((stat, i) => (
             <StatCard key={stat.label + i} value={stat.value} label={stat.label} delay={i * 0.1} started={started} />
