@@ -23,9 +23,9 @@ export default function Footer() {
               <Image
                 src="/images/logo.jpg"
                 alt="Nhật Trí Thành Logo"
-                width={52}
+                width={80}
                 height={52}
-                className="object-contain bg-white p-1"
+                className="object-contain h-12 w-auto bg-white p-1"
               />
               <div>
                 <div className="font-bold text-base leading-tight tracking-tight">NHẬT TRÍ THÀNH</div>

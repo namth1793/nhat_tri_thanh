@@ -34,9 +34,9 @@ export default function Header() {
             <Image
               src="/images/logo.jpg"
               alt="Nhật Trí Thành Logo"
-              width={56}
-              height={56}
-              className="object-contain"
+              width={80}
+              height={52}
+              className="object-contain h-12 w-auto"
             />
             <div className="flex flex-col">
               <div className="font-bold text-sm leading-tight tracking-wide text-gray-900">NHAT TRI THANH CO., LTD</div>

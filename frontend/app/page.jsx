@@ -1,7 +1,6 @@
 import Hero from '../components/sections/Hero';
 import Stats from '../components/sections/Stats';
 import About from '../components/sections/About';
-import Partners from '../components/sections/Partners';
 import ProductCategories from '../components/sections/ProductCategories';
 import Industries from '../components/sections/Industries';
 import News from '../components/sections/News';
@@ -14,7 +13,6 @@ export default function HomePage() {
       <Hero />
       <Stats />
       <About />
-      <Partners />
       <ProductCategories />
       <Industries />
       <News />
