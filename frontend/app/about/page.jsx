@@ -11,7 +11,7 @@ export default function AboutPage() {
     <>
       {/* Page Hero */}
       <section className="relative bg-gray-900 py-24">
-        <div className="absolute inset-0 bg-cover bg-center opacity-20" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1600&q=80')" }} />
+        <div className="absolute inset-0 bg-cover bg-center opacity-20" style={{ backgroundImage: "url('/images/intro/about-page.png')" }} />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-primary font-semibold uppercase tracking-widest text-sm mb-3">{a.heroTag}</p>
           <h1 className="text-4xl md:text-5xl font-bold text-white">{a.heroTitle}</h1>
@@ -23,7 +23,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="relative h-96 lg:h-[500px]">
-              <Image src="https://images.unsplash.com/photo-1565689157206-0fddef7589a2?w=800&q=80" alt="Industrial facility" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+              <Image src="/images/intro/about-page.png" alt="Nhật Trí Thành - Về chúng tôi" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
               <div className="absolute inset-0 bg-primary opacity-10" />
             </div>
             <div>

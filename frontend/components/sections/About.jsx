@@ -13,8 +13,8 @@ export default function About() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="relative h-80 md:h-[480px] overflow-visible">
             <Image
-              src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=900&q=80"
-              alt="Industrial facility"
+              src="/images/intro/home-about.png"
+              alt="Nhật Trí Thành - Giới thiệu công ty"
               fill
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 50vw"
