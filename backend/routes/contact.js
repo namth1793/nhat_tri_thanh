@@ -37,7 +37,7 @@ router.post('/', async (req, res) => {
       replyTo: email,
       subject: `[Liên hệ website] ${subject} - ${name}`,
       html: `
-        <h2 style="color:#C40000">Tin nhắn mới từ website Nhật Trí Thành</h2>
+        <h2 style="color:#C40000">Tin nhắn mới từ website Nhất Trí Thành</h2>
         <table style="border-collapse:collapse;width:100%;max-width:600px">
           <tr><td style="padding:8px;font-weight:bold;background:#f5f5f5;width:140px">Họ tên</td><td style="padding:8px;border:1px solid #eee">${name}</td></tr>
           <tr><td style="padding:8px;font-weight:bold;background:#f5f5f5">Công ty</td><td style="padding:8px;border:1px solid #eee">${company || 'N/A'}</td></tr>

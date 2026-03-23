@@ -96,38 +96,22 @@ export default function ProductCategoryPage() {
                 {activeSub ? activeSub.name : cat.name}
               </h1>
 
-              {/* Tag badge + application */}
-              {activeSub && (
-                <div className="mb-5">
-                  {activeSub.tag && (
-                    <span className="inline-block bg-primary text-white text-xs font-bold px-3 py-1 uppercase tracking-wide mr-2 mb-2">
-                      {activeSub.tag}
-                    </span>
-                  )}
-                  <p className="text-gray-600 text-sm leading-relaxed">{activeSub.app}</p>
-                </div>
+              {/* Tag badge */}
+              {activeSub && activeSub.tag && (
+                <span className="inline-block bg-primary text-white text-xs font-bold px-3 py-1 uppercase tracking-wide mb-4">
+                  {activeSub.tag}
+                </span>
               )}
 
-              {!activeSub && (
-                <p className="text-gray-500 italic mb-6">{cat.tagline}</p>
-              )}
-
-              {/* Specs table */}
+              {/* Product description — changes with selected thumbnail */}
               <div className="mb-6">
                 <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wide mb-3 flex items-center gap-2">
                   <div className="w-4 h-0.5 bg-primary" />
-                  {t.specsTitle}
+                  {t.descTitle}
                 </h3>
-                <table className="w-full border border-gray-200 text-sm">
-                  <tbody>
-                    {cat.specs.map((spec, i) => (
-                      <tr key={i} className={i % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
-                        <td className="py-2.5 px-4 font-semibold text-gray-700 border-r border-gray-200 w-2/5">{spec.label}</td>
-                        <td className="py-2.5 px-4 text-gray-900">{spec.value}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+                <p className="text-gray-700 leading-relaxed text-sm">
+                  {activeSub ? activeSub.app : cat.tagline}
+                </p>
               </div>
 
               {/* Sub-product navigation dots */}

@@ -1,6 +1,6 @@
 'use client';
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useLanguage } from '../context/LanguageContext';
 
 export default function Footer() {
@@ -28,7 +28,7 @@ export default function Footer() {
                 className="object-contain h-12 w-auto bg-white p-1"
               />
               <div>
-                <div className="font-bold text-base leading-tight tracking-tight">NHẬT TRÍ THÀNH</div>
+                <div className="font-bold text-base leading-tight tracking-tight">NHẤT TRÍ THÀNH</div>
                 <div className="text-xs leading-tight tracking-widest uppercase text-red-300">CÔNG TY TNHH</div>
               </div>
             </div>

@@ -23,7 +23,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="relative h-96 lg:h-[500px]">
-              <Image src="/images/intro/about-page.png" alt="Nhật Trí Thành - Về chúng tôi" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+              <Image src="/images/intro/about-page.png" alt="Nhất Trí Thành - Về chúng tôi" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
               <div className="absolute inset-0 bg-primary opacity-10" />
             </div>
             <div>
