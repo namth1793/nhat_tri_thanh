@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useLanguage } from '../context/LanguageContext';
 import { categoryLinks } from '../data/productData';
@@ -30,18 +31,13 @@ export default function Header() {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 flex-shrink-0">
-            <div className="w-12 h-12 bg-primary flex items-center justify-center flex-shrink-0">
-              <svg viewBox="0 0 40 40" className="w-8 h-8 fill-white">
-                <rect x="4" y="8" width="4" height="24" />
-                <rect x="4" y="8" width="20" height="4" />
-                <rect x="4" y="18" width="14" height="4" />
-                <rect x="22" y="8" width="4" height="24" />
-                <rect x="28" y="8" width="4" height="24" />
-                <rect x="28" y="8" width="8" height="4" />
-                <rect x="28" y="18" width="8" height="4" />
-                <rect x="28" y="28" width="8" height="4" />
-              </svg>
-            </div>
+            <Image
+              src="/images/logo.jpg"
+              alt="Nhật Trí Thành Logo"
+              width={56}
+              height={56}
+              className="object-contain"
+            />
             <div className="flex flex-col">
               <div className="font-bold text-sm leading-tight tracking-wide text-gray-900">NHAT TRI THANH CO., LTD</div>
               <div className="text-xs leading-tight tracking-wide text-gray-500">CÔNG TY TNHH NHẤT TRÍ THÀNH</div>

@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useLanguage } from '../context/LanguageContext';
 
 export default function Footer() {
@@ -19,9 +20,13 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-5">
-              <div className="w-10 h-10 bg-primary flex items-center justify-center">
-                <span className="text-white font-bold text-lg">N</span>
-              </div>
+              <Image
+                src="/images/logo.jpg"
+                alt="Nhật Trí Thành Logo"
+                width={52}
+                height={52}
+                className="object-contain bg-white p-1"
+              />
               <div>
                 <div className="font-bold text-base leading-tight tracking-tight">NHẬT TRÍ THÀNH</div>
                 <div className="text-xs leading-tight tracking-widest uppercase text-red-300">CÔNG TY TNHH</div>

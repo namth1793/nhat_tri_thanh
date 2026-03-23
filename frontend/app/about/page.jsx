@@ -88,25 +88,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Team */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <p className="text-primary font-semibold uppercase tracking-widest text-sm mb-3">{a.teamTag}</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">{a.teamTitle}</h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {a.team.map((member, idx) => (
-              <div key={idx} className="bg-white p-8 text-center">
-                <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-4" />
-                <h3 className="font-bold text-gray-900 text-lg">{member.name}</h3>
-                <p className="text-primary text-sm font-semibold uppercase tracking-wide mb-3">{member.role}</p>
-                <p className="text-gray-500 text-sm leading-relaxed">{member.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
     </>
   );
 }
