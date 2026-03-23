@@ -288,7 +288,7 @@ export default function ProductCategoryPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <p className="text-primary font-semibold uppercase tracking-widest text-sm mb-3">Nhật Trí Thành</p>
+              <p className="text-primary font-semibold uppercase tracking-widest text-sm mb-3">Nhất Trí Thành</p>
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">{t.whyTitle}</h2>
               <p className="text-gray-600 leading-relaxed mb-6">{t.whySub}</p>
               <Link href="/contact" className="btn-primary inline-block">{t.whyBtn}</Link>
