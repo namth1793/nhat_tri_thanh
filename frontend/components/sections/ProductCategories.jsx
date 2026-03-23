@@ -4,10 +4,10 @@ import Link from 'next/link';
 import { useLanguage } from '../../context/LanguageContext';
 
 const images = [
-  'https://images.unsplash.com/photo-1565689157206-0fddef7589a2?w=600&q=80',
-  'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
-  'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=600&q=80',
-  'https://images.unsplash.com/photo-1581093450021-4a7360e9a6b5?w=600&q=80',
+  '/images/products/g1/bof.jpg',
+  '/images/products/g2/copper-mold.jpg',
+  '/images/products/g3/femn.jpg',
+  '/images/products/g4/dam-lo.jpg',
 ];
 
 export default function ProductCategories() {
