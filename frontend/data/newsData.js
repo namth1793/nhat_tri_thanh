@@ -72,7 +72,7 @@ Leading steel producers such as Hoa Phat, Hoa Sen, and Viet Y Steel continue to 
 **Domestic raw material shortages:** Vietnam remains heavily dependent on imports of iron ore, coking coal, and ferroalloys. International commodity price swings directly impact production costs and profit margins across the industry.`,
         },
         {
-          heading: 'Nhat Tri Thanh – Supporting Vietnam's Steel Industry',
+          heading: "Nhat Tri Thanh – Supporting Vietnam's Steel Industry",
           body: `With over 10 years of experience supplying machinery, spare parts, metallurgical raw materials, and refractory products to leading steel plants, Nhat Tri Thanh understands the essential needs of the industry during this transition period.
 
 We provide comprehensive solutions — from furnace equipment (BOF, EAF, induction furnaces) and CCM spare parts, to ferroalloys, furnace lining materials, and refractory bricks — helping plants maintain stable operations, improve finished steel quality, and optimize operating costs.
@@ -178,7 +178,7 @@ Pioneer projects:
 The biggest current challenge is that green hydrogen costs 3–4 times more than natural gas, but prices are forecast to drop sharply as renewable energy production scales up.`,
         },
         {
-          heading: 'Trends in Vietnam and Nhat Tri Thanh\'s Role',
+          heading: "Trends in Vietnam and Nhat Tri Thanh's Role",
           body: `In Vietnam, several major steel producers have begun researching and planning EAF investments to meet export requirements to the EU (the Carbon Border Adjustment Mechanism — CBAM — took effect in 2026). Hoa Phat has already commissioned its EAF complex at Dung Quat 2 with a capacity of 5.6 million tonnes per year.
 
 Nhat Tri Thanh supplies a complete range of equipment and materials for EAF-based steelmaking:
