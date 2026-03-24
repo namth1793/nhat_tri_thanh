@@ -23,7 +23,7 @@ export default function NewsPage() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {n.articles.map((article, i) => (
-              <article key={i} className="bg-white border border-gray-200 hover:border-primary hover:shadow-lg transition-all duration-200 group overflow-hidden">
+              <Link key={i} href={`/news/${article.slug}`} className="bg-white border border-gray-200 hover:border-primary hover:shadow-lg transition-all duration-200 group overflow-hidden block">
                 {/* Image */}
                 <div className="relative h-52 overflow-hidden">
                   <Image
@@ -49,17 +49,14 @@ export default function NewsPage() {
                   <p className="text-gray-600 text-sm leading-relaxed mb-5 line-clamp-4">
                     {article.excerpt}
                   </p>
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center gap-2 text-primary font-semibold text-sm uppercase tracking-wide hover:gap-3 transition-all duration-200"
-                  >
+                  <span className="inline-flex items-center gap-2 text-primary font-semibold text-sm uppercase tracking-wide group-hover:gap-3 transition-all duration-200">
                     {n.readMore}
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
-                  </Link>
+                  </span>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
 

@@ -1,5 +1,6 @@
 'use client';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useLanguage } from '../../context/LanguageContext';
 
 export default function News() {
@@ -17,7 +18,7 @@ export default function News() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {n.articles.map((article, i) => (
-            <article key={i} className="bg-white group overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
+            <Link key={i} href={`/news/${article.slug}`} className="bg-white group overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 block">
               <div className="relative h-56 overflow-hidden">
                 <Image
                   src={article.image}
@@ -41,14 +42,14 @@ export default function News() {
                 <p className="text-gray-500 text-sm leading-relaxed mb-5 line-clamp-3">
                   {article.excerpt}
                 </p>
-                <button className="inline-flex items-center gap-2 text-primary text-sm font-semibold uppercase tracking-wide hover:gap-3 transition-all duration-200">
+                <span className="inline-flex items-center gap-2 text-primary text-sm font-semibold uppercase tracking-wide group-hover:gap-3 transition-all duration-200">
                   {n.readMore}
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
-                </button>
+                </span>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
       </div>
