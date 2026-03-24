@@ -54,8 +54,9 @@ export default function Footer() {
             <h4 className="font-bold uppercase tracking-widest text-sm mb-5 text-white">{t.footer.contact}</h4>
             <ul className="space-y-3 text-sm text-red-200">
               <li style={{ whiteSpace: 'pre-line' }}>{t.footer.address}</li>
-              <li><a href="mailto:info@nhattrithanh.vn" className="hover:text-white transition-colors">info@nhattrithanh.vn</a></li>
-              <li><a href="tel:+84xxxxxxxxx" className="hover:text-white transition-colors">+84 xxx xxx xxx</a></li>
+              <li><a href="mailto:pkd@nhattrithanh.com" className="hover:text-white transition-colors">pkd@nhattrithanh.com</a></li>
+              <li><a href="tel:0987932911" className="hover:text-white transition-colors">0987 932 911</a></li>
+              <li><a href="tel:04376589989" className="hover:text-white transition-colors">Hotline: 0437 658 9989</a></li>
             </ul>
           </div>
         </div>

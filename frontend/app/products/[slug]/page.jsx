@@ -147,7 +147,7 @@ export default function ProductCategoryPage() {
                 <Link href="/contact" className="btn-primary text-center flex-1">
                   {t.ctaBtn}
                 </Link>
-                <a href="tel:+84xxxxxxxxx" className="flex-1 border-2 border-primary text-primary font-semibold text-sm text-center px-6 py-3 uppercase tracking-wide hover:bg-primary hover:text-white transition-colors duration-200">
+                <a href="tel:0987932911" className="flex-1 border-2 border-primary text-primary font-semibold text-sm text-center px-6 py-3 uppercase tracking-wide hover:bg-primary hover:text-white transition-colors duration-200">
                   {t.ctaPhone}
                 </a>
               </div>
@@ -302,7 +302,7 @@ export default function ProductCategoryPage() {
             </div>
             <div className="flex flex-col sm:flex-row gap-3 flex-shrink-0">
               <Link href="/contact" className="btn-outline whitespace-nowrap">{t.ctaBtn}</Link>
-              <a href="tel:+84xxxxxxxxx" className="bg-white text-primary font-bold text-sm px-6 py-3 uppercase tracking-wide hover:bg-gray-100 transition-colors whitespace-nowrap text-center">
+              <a href="tel:0987932911" className="bg-white text-primary font-bold text-sm px-6 py-3 uppercase tracking-wide hover:bg-gray-100 transition-colors whitespace-nowrap text-center">
                 {t.ctaPhone}
               </a>
             </div>

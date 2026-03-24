@@ -4,10 +4,10 @@ import Link from 'next/link';
 import { useLanguage } from '../../context/LanguageContext';
 
 const images = [
-  'https://images.unsplash.com/photo-1565689157206-0fddef7589a2?w=800&q=80',
-  'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
-  'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=800&q=80',
-  'https://images.unsplash.com/photo-1581093450021-4a7360e9a6b5?w=800&q=80',
+  '/images/products/g1/bof.jpg',
+  '/images/products/g2/copper-mold.jpg',
+  '/images/products/g3/femn.jpg',
+  '/images/products/g4/dam-lo.jpg',
 ];
 
 export default function ProductsPage() {
@@ -17,7 +17,7 @@ export default function ProductsPage() {
   return (
     <>
       <section className="relative bg-gray-900 py-24">
-        <div className="absolute inset-0 bg-cover bg-center opacity-20" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1565689157206-0fddef7589a2?w=1600&q=80')" }} />
+        <div className="absolute inset-0 bg-cover bg-center opacity-20" style={{ backgroundImage: "url('/images/products/g1/bof.jpg')" }} />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-primary font-semibold uppercase tracking-widest text-sm mb-3">{p.heroTag}</p>
           <h1 className="text-4xl md:text-5xl font-bold text-white">{p.heroTitle}</h1>

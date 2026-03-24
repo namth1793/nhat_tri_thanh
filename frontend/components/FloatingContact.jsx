@@ -1,8 +1,8 @@
 'use client';
 
-const ZALO_NUMBER = '0xxxxxxxxx'; // Thay số Zalo thật
-const WHATSAPP_NUMBER = '84xxxxxxxxx'; // Thay số WhatsApp thật (bỏ số 0 đầu, thêm 84)
-const PHONE_NUMBER = '0xxxxxxxxx';
+const ZALO_NUMBER = '0987932911';
+const WHATSAPP_NUMBER = '84987932911';
+const PHONE_NUMBER = '0987932911';
 
 export default function FloatingContact() {
   return (
